@@ -1,0 +1,86 @@
+{
+  "name": "logmaster",
+  "displayName": "LogMaster",
+  "description": "lm",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.58.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "控制台日志 Log Master",
+      "properties": {
+        "logmaster.quoteStyle": {
+          "type": "string",
+          "enum": [
+            "single",
+            "double"
+          ],
+          "default": "double",
+          "description": "定义单双引号类型 The style of quotes to use in log statements (single or double)."
+        },
+        "logmaster.includeTime": {
+          "type": "boolean",
+          "default": false,
+          "description": "勾选则会添加时间前缀 Include the current time in the log prefix."
+        },
+        "logmaster.includeType": {
+          "type": "boolean",
+          "default": false,
+          "description": "勾选则会添加类型前缀 Include the type of the selected expression in the log prefix."
+        },
+        "logmaster.customEmoji": {
+          "type": "string",
+          "default": "",
+          "description": "自定义前缀(可以为表情) Custom emoji or string to include in the log prefix."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "logmaster.copyTextToLog",
+        "title": "%copyTextToLog.title%",
+        "shortTitle": "打印此框选log",
+        "category": "LogMaster"
+      },
+      {
+        "command": "logmaster.commentAllLogs",
+        "title": "%commentAllLogs.title%",
+        "shortTitle": "注释所有log",
+        "category": "LogMaster"
+      },
+      {
+        "command": "logmaster.removeAllLogs",
+        "title": "%removeAllLogs.title%",
+        "shortTitle": "删除所有log(包括注释里的)",
+        "category": "LogMaster"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "logmaster.copyTextToLog",
+        "key": "ctrl+alt+c",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.58.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
